@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Biens index{% endblock %}
+
+{% block body %}
+    <h1>Biens index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pieces</th>
+                <th>Chambre</th>
+                <th>Surface</th>
+                <th>Adresse</th>
+                <th>Prix</th>
+                <th>Charge</th>
+                <th>Images</th>
+                <th>Description</th>
+                <th>Date_construction</th>
+                <th>Etage</th>
+                <th>Cuisine</th>
+                <th>Bain</th>
+                <th>Energie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bien in biens %}
+            <tr>
+                <td>{{ bien.id }}</td>
+                <td>{{ bien.pieces }}</td>
+                <td>{{ bien.chambre }}</td>
+                <td>{{ bien.surface }}</td>
+                <td>{{ bien.adresse }}</td>
+                <td>{{ bien.prix }}</td>
+                <td>{{ bien.charge }}</td>
+                <td>{{ bien.images }}</td>
+                <td>{{ bien.description }}</td>
+                <td>{{ bien.dateConstruction }}</td>
+                <td>{{ bien.etage }}</td>
+                <td>{{ bien.cuisine ? 'Yes' : 'No' }}</td>
+                <td>{{ bien.bain ? 'Yes' : 'No' }}</td>
+                <td>{{ bien.energie }}</td>
+                <td>
+                    <a href="{{ path('biens_show', {'id': bien.id}) }}">show</a>
+                    <a href="{{ path('biens_edit', {'id': bien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('biens_new') }}">Create new</a>
+{% endblock %}
